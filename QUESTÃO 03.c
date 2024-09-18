@@ -1,51 +1,50 @@
 #include <stdio.h>
 
-#define MAX_NUMEROS 100
-
-void bubbleSortDecrescente(int arr[], int n) {
-    
+void bubbleSort(int arr[], int n) {
     int i, j;
-    int temp;
-    int trocou;
+    int swapped;
     
-    for (i = 0; i < n-1; i++) {
-        trocou = 0;
+    for (i = 0; i < n - 1; i++) {
+        swapped = 0; 
         
-        for (j = 0; j < n-i-1; j++) {
-            if(arr[j] < arr[j+1]) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
                 
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-                
-                trocou = 1;
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1;
             }
-        }
+        } 
         
-        if (!trocou) {
+        if (swapped == 0) {
             break;
+            
         }
     }
 }
 
-int main() {
-
-int numeros[MAX_NUMEROS];
-int i = 0;
-int c;
-
-    printf("Digite vários números inteiros (aperte enter para terminar):\n");
-    while (scanf("%d", &c) == 1 && i < MAX_NUMEROS) {
-        numeros[i++] = c;
-        }
-        bubbleSortDecrescente(numeros, i);
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
         
-        printf("Números ordenados em ordem decrescente: ");
-        for (int j = 0; j < i; j++) {
-            printf("%d ", numeros[j]);
-            
-        }
-        printf("\n");
-        
+    }
+    
+    printf("\n");
+    
+}
+
+int main () {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+ printf("Array original: \n");
+ 
+ printArray(arr, n);
+ 
+ bubbleSort(arr, n);
+ 
+ printf("Array ordenado em ordem decrescente: \n");
+    printArray(arr, n);
     return 0;
 }
